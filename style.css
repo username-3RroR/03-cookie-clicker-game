@@ -1,0 +1,4 @@
+.storeContainer {
+	display: flex;
+	flex-direction: column;
+}

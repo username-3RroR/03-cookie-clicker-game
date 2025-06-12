@@ -2,6 +2,12 @@ const cookieBtn = document.getElementById('cookieBtn');
 const counterDisplay = document.getElementById('counterDisplay');
 const cpsDisplay = document.getElementById('cookiePerSecDisplay');
 
+/* Interval to store cookie count every second
+const saveCookies = setInterval(() => {
+	localStorage.setItem('cookieCount', count);
+	localStorage.setItem('cookiePerSec', cps);
+}, 1000);*/
+
 let defaults = {
 	cookieCount: 0,
 	cookiePerSec: 1,
@@ -36,9 +42,14 @@ async function upgradesBtns() {
 
 	divBig.append(store);
 
+	divBig.setAttribute('class', 'storeContainer');
+
 	document.body.appendChild(divBig);
 
 	upgrades.forEach((upgrade) => {
+		const nowCountFromLocalStorage = localStorage.getItem('cookieCount');
+		const nowCount = JSON.parse(nowCountFromLocalStorage);
+
 		const div = document.createElement('div');
 		const name = document.createElement('p');
 		const cost = document.createElement('p');
@@ -46,9 +57,20 @@ async function upgradesBtns() {
 		const buy = document.createElement('button');
 
 		name.innerText = upgrade.name;
-		cost.innerText = upgrade.cost;
-		increase.innerText = upgrade.increase;
+		cost.innerText = 'Cost: ' + upgrade.cost;
+		increase.innerText = '+ ' + upgrade.increase + ' cookies';
 		buy.innerText = 'Buy';
+		buy.id = upgrade.id;
+
+		buy.setAttribute('name', 'Buy Upgrade', 'class', 'buyBtn');
+
+		const toPay = upgrade.cost;
+
+		if (nowCount < toPay) {
+			buy.setAttribute('disabled', '');
+		} else if (nowCount > toPay) {
+			buy.removeAttribute('disabled');
+		}
 
 		div.append(name, cost, increase, buy);
 
@@ -63,9 +85,3 @@ cookieBtn.addEventListener('click', () => {
 	counterDisplay.innerText = count;
 	localStorage.setItem('cookieCount', count); // delete later
 });
-
-/* Interval to store cookie count every second
-const saveCookies = setInterval(() => {
-	localStorage.setItem('cookieCount', count);
-	localStorage.setItem('cookiePerSec', cps);
-}, 1000);*/
