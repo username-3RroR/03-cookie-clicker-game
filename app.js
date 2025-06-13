@@ -13,10 +13,12 @@ let defaults = {
 	cookiePerSec: 1,
 };
 
-let count = localStorage.getItem('cookieCount') || defaults.cookieCount;
+let countLS = localStorage.getItem('cookieCount') || defaults.cookieCount;
+let count = JSON.parse(countLS);
 counterDisplay.innerText = count;
 
-let cps = localStorage.getItem('cookiePerSec') || defaults.cookiePerSec;
+let cpsLS = localStorage.getItem('cookiePerSec') || defaults.cookiePerSec;
+let cps = JSON.parse(cpsLS);
 cpsDisplay.innerText = cps;
 
 async function fetchData() {
@@ -47,9 +49,6 @@ async function upgradesBtns() {
 	document.body.appendChild(divBig);
 
 	upgrades.forEach((upgrade) => {
-		const nowCountFromLocalStorage = localStorage.getItem('cookieCount');
-		const nowCount = JSON.parse(nowCountFromLocalStorage);
-
 		const div = document.createElement('div');
 		const name = document.createElement('p');
 		const cost = document.createElement('p');
@@ -66,9 +65,9 @@ async function upgradesBtns() {
 
 		const toPay = upgrade.cost;
 
-		if (nowCount < toPay) {
+		if (count < toPay) {
 			buy.setAttribute('disabled', '');
-		} else if (nowCount > toPay) {
+		} else if (count > toPay) {
 			buy.removeAttribute('disabled');
 		}
 
@@ -76,12 +75,74 @@ async function upgradesBtns() {
 
 		divBig.appendChild(div);
 	});
+
+	const autoI = document.getElementById('1');
+
+	const autoV = document.getElementById('2');
+
+	const autoX = document.getElementById('3');
+	autoX.addEventListener('click', () => {
+		// minus cost from current count, then set the new count
+		let countLS = localStorage.getItem('cookieCount');
+		let count = JSON.parse(countLS);
+
+		let paidCount = count - upgrades[2].cost;
+		counterDisplay.innerText = paidCount;
+		localStorage.setItem('cookieCount', paidCount);
+		//
+
+		// increase the current cps, then set the new cps
+		let cpsLS = localStorage.getItem('cookiePerSec');
+		let cps = JSON.parse(cpsLS);
+
+		let addedCps = cps + upgrades[2].increase;
+		cpsDisplay.innerText = addedCps;
+		localStorage.setItem('cookiePerSec', addedCps);
+		//
+
+		console.log(
+			`Upgraded! ${upgrades[2].name}: You get ${upgrades[2].increase} cookies every 10 seconds!`
+		);
+
+		// set auto click interval
+		setInterval(() => {
+			// get whatever the current count is
+			let countLS = localStorage.getItem('cookieCount');
+			let count = JSON.parse(countLS);
+
+			// get whatever the current cps
+			let cpsLS = localStorage.getItem('cookiePerSec');
+			let cps = JSON.parse(cpsLS);
+
+			// add the current cps to the count
+			let newCount = count + cps;
+			counterDisplay.innerText = newCount;
+			localStorage.setItem('cookieCount', newCount);
+		}, 5000);
+	});
+
+	const autoXX = document.getElementById('4');
+
+	const autoL = document.getElementById('5');
+
+	const autoC = document.getElementById('6');
+
+	const autoCC = document.getElementById('7');
+
+	const autoD = document.getElementById('8');
+
+	const autoM = document.getElementById('9');
+
+	const autoMM = document.getElementById('10');
 }
 
 upgradesBtns();
 
 cookieBtn.addEventListener('click', () => {
-	count++;
-	counterDisplay.innerText = count;
-	localStorage.setItem('cookieCount', count); // delete later
+	let countLS = localStorage.getItem('cookieCount') || defaults.cookieCount;
+	let count = JSON.parse(countLS);
+
+	let plusOne = count + 1;
+	counterDisplay.innerText = plusOne;
+	localStorage.setItem('cookieCount', plusOne);
 });
