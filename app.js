@@ -2,12 +2,6 @@ const cookieBtn = document.getElementById('cookieBtn');
 const counterDisplay = document.getElementById('counterDisplay');
 const cpsDisplay = document.getElementById('cookiePerSecDisplay');
 
-/* Interval to store cookie count every second
-const saveCookies = setInterval(() => {
-	localStorage.setItem('cookieCount', count);
-	localStorage.setItem('cookiePerSec', cps);
-}, 1000);*/
-
 let defaults = {
 	cookieCount: 0,
 	cookiePerSec: 0,
@@ -65,11 +59,16 @@ async function upgradesBtns() {
 
 		const toPay = upgrade.cost;
 
-		if (count < toPay) {
-			buy.setAttribute('disabled', '');
-		} else if (count > toPay) {
-			buy.removeAttribute('disabled');
-		}
+		setInterval(() => {
+			let countLS = localStorage.getItem('cookieCount');
+			let countNow = JSON.parse(countLS);
+
+			if (countNow < toPay) {
+				buy.setAttribute('disabled', '');
+			} else if (countNow > toPay) {
+				buy.removeAttribute('disabled');
+			}
+		}, 1000);
 
 		div.append(name, cost, increase, buy);
 
@@ -95,7 +94,7 @@ async function upgradesBtns() {
 		let cps = JSON.parse(cpsLS);
 
 		let addedCps = cps + upgrades[0].increase;
-		// cpsDisplay.innerText = addedCps; // delete
+		cpsDisplay.innerText = `Auto-Cooking: ${addedCps} every 10 seconds`;
 		localStorage.setItem('cookiePerSec', addedCps);
 		//
 
@@ -137,7 +136,7 @@ async function upgradesBtns() {
 		let cps = JSON.parse(cpsLS);
 
 		let addedCps = cps + upgrades[1].increase;
-		// cpsDisplay.innerText = addedCps; // delete
+		cpsDisplay.innerText = `Auto-Cooking: ${addedCps} every 10 seconds`;
 		localStorage.setItem('cookiePerSec', addedCps);
 		//
 
@@ -179,7 +178,7 @@ async function upgradesBtns() {
 		let cps = JSON.parse(cpsLS);
 
 		let addedCps = cps + upgrades[2].increase;
-		// cpsDisplay.innerText = addedCps; // delete
+		cpsDisplay.innerText = `Auto-Cooking: ${addedCps} every 10 seconds`;
 		localStorage.setItem('cookiePerSec', addedCps);
 		//
 
@@ -221,7 +220,7 @@ async function upgradesBtns() {
 		let cps = JSON.parse(cpsLS);
 
 		let addedCps = cps + upgrades[3].increase;
-		// cpsDisplay.innerText = addedCps; // delete
+		cpsDisplay.innerText = `Auto-Cooking: ${addedCps} every 10 seconds`;
 		localStorage.setItem('cookiePerSec', addedCps);
 		//
 
@@ -263,7 +262,7 @@ async function upgradesBtns() {
 		let cps = JSON.parse(cpsLS);
 
 		let addedCps = cps + upgrades[4].increase;
-		// cpsDisplay.innerText = addedCps; // delete
+		cpsDisplay.innerText = `Auto-Cooking: ${addedCps} every 10 seconds`;
 		localStorage.setItem('cookiePerSec', addedCps);
 		//
 
@@ -305,7 +304,7 @@ async function upgradesBtns() {
 		let cps = JSON.parse(cpsLS);
 
 		let addedCps = cps + upgrades[5].increase;
-		// cpsDisplay.innerText = addedCps; // delete
+		cpsDisplay.innerText = `Auto-Cooking: ${addedCps} every 10 seconds`;
 		localStorage.setItem('cookiePerSec', addedCps);
 		//
 
@@ -347,7 +346,7 @@ async function upgradesBtns() {
 		let cps = JSON.parse(cpsLS);
 
 		let addedCps = cps + upgrades[6].increase;
-		// cpsDisplay.innerText = addedCps; // delete
+		cpsDisplay.innerText = `Auto-Cooking: ${addedCps} every 10 seconds`;
 		localStorage.setItem('cookiePerSec', addedCps);
 		//
 
@@ -389,7 +388,7 @@ async function upgradesBtns() {
 		let cps = JSON.parse(cpsLS);
 
 		let addedCps = cps + upgrades[7].increase;
-		// cpsDisplay.innerText = addedCps; // delete
+		cpsDisplay.innerText = `Auto-Cooking: ${addedCps} every 10 seconds`;
 		localStorage.setItem('cookiePerSec', addedCps);
 		//
 
@@ -431,7 +430,7 @@ async function upgradesBtns() {
 		let cps = JSON.parse(cpsLS);
 
 		let addedCps = cps + upgrades[8].increase;
-		// cpsDisplay.innerText = addedCps; // delete
+		cpsDisplay.innerText = `Auto-Cooking: ${addedCps} every 10 seconds`;
 		localStorage.setItem('cookiePerSec', addedCps);
 		//
 
@@ -473,7 +472,7 @@ async function upgradesBtns() {
 		let cps = JSON.parse(cpsLS);
 
 		let addedCps = cps + upgrades[9].increase;
-		// cpsDisplay.innerText = addedCps; // delete
+		cpsDisplay.innerText = `Auto-Cooking: ${addedCps} every 10 seconds`;
 		localStorage.setItem('cookiePerSec', addedCps);
 		//
 
