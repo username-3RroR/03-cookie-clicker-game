@@ -2,6 +2,17 @@
 	margin: 0px;
 }
 
+body {
+	font-family: 'Sour Gummy', sans-serif;
+	font-optical-sizing: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	gap: 20vw;
+	color: #432818;
+}
+
 .storeContainer {
 	display: flex;
 	flex-direction: column;
@@ -16,10 +27,13 @@
 	padding-bottom: 1rem;
 	border-radius: 0.5rem;
 }
+
 h2 {
 	width: 100%;
 	text-align: center;
-	margin-bottom: 1rem;
+	margin-bottom: 0.5rem;
+	font-size: 2rem;
+	font-weight: 600;
 }
 
 .upDetails {
@@ -41,7 +55,10 @@ h2 {
 	justify-content: space-around;
 	width: 100%;
 	background-color: #bb9457;
-	padding: 1rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
 	border-radius: 0.25rem;
 }
 
@@ -52,4 +69,26 @@ h2 {
 	padding-left: 1.5rem;
 	align-self: center;
 	border-radius: 2rem;
+	font-family: 'Sour Gummy', sans-serif;
+}
+
+.counterContainer {
+	display: flex;
+	flex-direction: column;
+	width: fit-content;
+	align-items: center;
+	justify-content: space-around;
+}
+
+#counterDisplay {
+	font-size: 4rem;
+	font-weight: 600;
+}
+
+#cookiePerSecDisplay {
+	font-size: 1.5rem;
+}
+
+.detailsCounter {
+	text-align: center;
 }

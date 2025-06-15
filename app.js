@@ -15,6 +15,15 @@ let cpsLS = localStorage.getItem('cookiePerSec') || defaults.cookiePerSec;
 let cps = JSON.parse(cpsLS);
 cpsDisplay.innerText = `Auto-Cooking: ${cps} every 10 seconds`;
 
+const detailsCounter = document.createElement('div');
+detailsCounter.append(counterDisplay, cpsDisplay);
+detailsCounter.setAttribute('class', 'detailsCounter');
+
+const cookieCounter = document.createElement('div');
+cookieCounter.append(detailsCounter, cookieBtn);
+cookieCounter.setAttribute('class', 'counterContainer');
+document.body.appendChild(cookieCounter);
+
 async function fetchData() {
 	const response = await fetch(
 		'https://cookie-upgrade-api.vercel.app/api/upgrades'
@@ -67,11 +76,14 @@ async function upgradesBtns() {
 				buy.setAttribute('disabled', '');
 				buy.style.backgroundColor = '#ffe6a7';
 				buy.style.borderColor = '#B09D6F';
+				buy.style.color = '#B09D6F';
 				buy.style.borderStyle = 'solid';
-			} else if (countNow > toPay) {
+			} else if (countNow >= toPay) {
 				buy.removeAttribute('disabled');
 				buy.style.backgroundColor = '#8CD685';
 				buy.style.borderColor = '#3F5F3C';
+				buy.style.color = '#3F5F3C';
+				buy.style.fontWeight = '600';
 				buy.style.borderStyle = 'solid';
 			}
 		}, 1000);
