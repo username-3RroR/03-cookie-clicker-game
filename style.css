@@ -11,6 +11,7 @@ body {
 	height: 100vh;
 	gap: 20vw;
 	color: #432818;
+	background-color: #fff8e5;
 }
 
 .storeContainer {
@@ -78,6 +79,7 @@ h2 {
 	width: fit-content;
 	align-items: center;
 	justify-content: space-around;
+	gap: 4rem;
 }
 
 #counterDisplay {
@@ -91,4 +93,14 @@ h2 {
 
 .detailsCounter {
 	text-align: center;
+}
+
+.clickedCookie {
+	width: 180px;
+	height: auto;
+}
+
+#cookieBtn {
+	width: auto;
+	height: 200px;
 }

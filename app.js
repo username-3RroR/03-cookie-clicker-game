@@ -2,6 +2,20 @@ const cookieBtn = document.getElementById('cookieBtn');
 const counterDisplay = document.getElementById('counterDisplay');
 const cpsDisplay = document.getElementById('cookiePerSecDisplay');
 
+cookieBtn.innerHTML =
+	'<img src = "./assets/cookie-cookie-clicker-game-200.png" />';
+
+cookieBtn.style.background = 'none';
+cookieBtn.style.border = 'none';
+
+cookieBtn.addEventListener('click', (event) => {
+	const clickedCookie = event.target;
+	clickedCookie.setAttribute('class', 'clickedCookie');
+	setTimeout(() => {
+		clickedCookie.removeAttribute('class', 'clickedCookie');
+	}, 100);
+});
+
 let defaults = {
 	cookieCount: 0,
 	cookiePerSec: 0,
@@ -103,7 +117,7 @@ async function upgradesBtns() {
 		divBig.appendChild(upBuyBtn);
 	});
 
-	const delay = 5000;
+	const delay = 10000;
 
 	// +1 cookie
 	const autoI = document.getElementById('1');
