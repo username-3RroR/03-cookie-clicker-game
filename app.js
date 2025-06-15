@@ -43,7 +43,7 @@ async function upgradesBtns() {
 	document.body.appendChild(divBig);
 
 	upgrades.forEach((upgrade) => {
-		const div = document.createElement('div');
+		// const div = document.createElement('div'); // all information about an upgrade
 		const name = document.createElement('p');
 		const cost = document.createElement('p');
 		const increase = document.createElement('p');
@@ -55,7 +55,7 @@ async function upgradesBtns() {
 		buy.innerText = 'Buy';
 		buy.id = upgrade.id;
 
-		buy.setAttribute('name', 'Buy Upgrade', 'class', 'buyBtn');
+		buy.setAttribute('class', 'buyBtn');
 
 		const toPay = upgrade.cost;
 
@@ -65,14 +65,30 @@ async function upgradesBtns() {
 
 			if (countNow < toPay) {
 				buy.setAttribute('disabled', '');
+				buy.style.backgroundColor = '#ffe6a7';
+				buy.style.borderColor = '#B09D6F';
+				buy.style.borderStyle = 'solid';
 			} else if (countNow > toPay) {
 				buy.removeAttribute('disabled');
+				buy.style.backgroundColor = '#8CD685';
+				buy.style.borderColor = '#3F5F3C';
+				buy.style.borderStyle = 'solid';
 			}
 		}, 1000);
 
-		div.append(name, cost, increase, buy);
+		const upDetails = document.createElement('div'); // for the cost and increase details // yellow
+		upDetails.setAttribute('class', 'upDetails');
+		upDetails.append(cost, increase);
 
-		divBig.appendChild(div);
+		const upNameDetails = document.createElement('div'); // all information about an upgrade // green
+		upNameDetails.setAttribute('class', 'upNameDetails');
+		upNameDetails.append(name, upDetails);
+
+		const upBuyBtn = document.createElement('div'); // add buy button // orange
+		upBuyBtn.setAttribute('class', 'upBuyBtn');
+		upBuyBtn.append(buy, upNameDetails);
+
+		divBig.appendChild(upBuyBtn);
 	});
 
 	const delay = 5000;
